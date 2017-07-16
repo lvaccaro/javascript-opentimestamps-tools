@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h4>1. INSERT HEX FILE TO GENERATE HASH</h4>
+    <textarea type="text" id="file" name="file" placeholder="Insert hex. File" rows="8" cols="128"></textarea><br>
+    <select id="hashtype_file" name="hashtype_file">
+        <option value="SHA1">SHA1</option>
+        <option value="SHA256" selected>SHA256</option>
+        <option value="RIPEMD160">RIPEMD160</option>
+    </select><br>
+    <button id="btn-generate">GENERATE HASH</button>
+
+    <h4>2. SELECT HASH TO STAMP</h4>
+        <textarea type="text" id="hash" name="hash" placeholder="Insert hex. Hash" rows="1" cols="66"></textarea><br>
+        <select id="hashtype"  name="hashtype">
+            <option value="SHA1">SHA1</option>
+            <option value="SHA256" selected>SHA256</option>
+            <option value="RIPEMD160">RIPEMD160</option>
+        </select><br>
+    <button id="btn-stamp">STAMP</button>
+    <textarea type="text" id="ots" name="ots" placeholder="OTS hex. File" rows="8" cols="128"></textarea><br>
+
+    <h4>3. OTS-PROOF INFO</h4>
+    <button name="btn-info">INFO</button><br>
+    <textarea type="text" id="info" name="info" placeholder="Info Output" rows="8" cols="128"></textarea><br>
+
+
+    <h4>4. OTS-PROOF UPGRADE</h4>
+    <button id="btn-upgrade">UPGRADE</button><br>
+    <textarea type="text" id="upgrade" name="upgrade" placeholder="Is upgraded" rows="1" cols="66"></textarea><br>
+
+    <h4>5. OTS-PROOF VERIFY</h4>
+    <button id="btn-verify">VERIFY</button><br>
+    <textarea type="text" id="attestation" name="attestation" placeholder="Attestation" rows="1" cols="66"></textarea><br>
+
+
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/cryptojs/lib/Crypto.js"></script>
+    <script src="./bower_components/cryptojs/lib/SHA1.js"></script>
+    <script src="./bower_components/cryptojs/lib/SHA256.js"></script>
+    <script src="./bower_components/bower-opentimestamps/dist/bower-opentimestamps.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>
