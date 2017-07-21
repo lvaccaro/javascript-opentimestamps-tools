@@ -6,12 +6,14 @@
 </head>
 <body>
     <h4>1. INSERT HEX FILE TO GENERATE HASH</h4>
+    <input type="file" id="choose-file" accept='*'/><br>
     <textarea type="text" id="file" name="file" placeholder="Insert hex. File" rows="8" cols="128"></textarea><br>
     <select id="hashtype_file" name="hashtype_file">
         <option value="SHA1">SHA1</option>
         <option value="SHA256" selected>SHA256</option>
         <option value="RIPEMD160">RIPEMD160</option>
     </select><br>
+
     <button id="btn-generate">GENERATE HASH</button>
 
     <h4>2. SELECT HASH TO STAMP</h4>
@@ -21,7 +23,7 @@
             <option value="SHA256" selected>SHA256</option>
             <option value="RIPEMD160">RIPEMD160</option>
         </select><br>
-    <button id="btn-stamp">STAMP</button>
+    <button id="btn-stamp">STAMP</button><br>
     <textarea type="text" id="ots" name="ots" placeholder="OTS hex. File" rows="8" cols="128"></textarea><br>
 
     <h4>3. OTS-PROOF INFO</h4>
@@ -38,12 +40,13 @@
     <textarea type="text" id="attestation" name="attestation" placeholder="Attestation" rows="1" cols="66"></textarea><br>
 
 
+
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="./bower_components/cryptojs/lib/Crypto.js"></script>
-    <script src="./bower_components/cryptojs/lib/SHA1.js"></script>
-    <script src="./bower_components/cryptojs/lib/SHA256.js"></script>
-    <script src="./bower_components/bower-opentimestamps/dist/bower-opentimestamps.js"></script>
+    <script src="./bower_components/bower-opentimestamps/dist/bower-opentimestamps.es6.js"></script>
+    <script src="./sha256.js"></script>-->
     <script src="index.js"></script>
+
+
 
 </body>
 </html>

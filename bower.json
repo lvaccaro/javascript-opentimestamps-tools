@@ -2,7 +2,6 @@
   "name": "javascript-opentimestamps-tools",
   "dependencies": {
     "bower-opentimestamps": "^1.0.2",
-    "jquery": "^3.2.1",
-    "cryptojs": "*"
+    "jquery": "^3.2.1"
   }
 }

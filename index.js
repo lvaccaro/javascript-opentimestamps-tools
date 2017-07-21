@@ -1,5 +1,6 @@
 const OpenTimestamps = require('javascript-opentimestamps');
 
+
 $("#btn-generate").click(function(event){
     event.preventDefault();
     var hexFile = $("#file").val();
@@ -19,6 +20,64 @@ $("#btn-generate").click(function(event){
     $("#hashtype").val(hashType);
     return false;
 });
+
+$("#choose-file").change(function(event) {
+    var input = event.target;
+    var file = input.files[0];
+    //var sha256 = CryptoJS.algo.SHA256.create();
+    var shaObj = new jsSHA("SHA-256", "ARRAYBUFFER");
+    console.log("TOTAL LENGTH: "+file.size);
+
+    if (file.size > 100 * 1024) {
+        $("#file").val("File too big.. not showing...");
+    }
+
+    parseFile(file,
+        function (data) {
+
+            console.log("LENGTH: " + data.byteLength);
+            shaObj.update(data);
+
+            //sha256.update(data);
+        }, function (data) {
+            console.log("COMPLETE ");
+            //var hash = sha256.finalize();
+            //var hashHex = hash.toString(CryptoJS.enc.Hex);
+            var hashHex = shaObj.getHash("HEX");
+            console.log(hashHex);
+            $("#hash").val(hashHex);
+        });
+});
+
+function parseFile(file, callbackProgress, callbackFinal) {
+    var chunkSize  = 1024; // bytes
+    var offset     = 0;
+    var timeout;
+
+    var size=chunkSize;
+    var partial;
+    while (offset < file.size) {
+        partial = file.slice(offset, offset+size);
+
+        var reader = new FileReader;
+        reader.size = chunkSize;
+        reader.offset = offset;
+        reader.onload = function(evt) {
+            //console.log(this.offset, this.size, this.result);
+            callbackProgress(evt.target.result);
+
+            if(timeout !== undefined){
+                clearTimeout(timeout);
+            }
+            timeout = setTimeout(function () {
+                callbackFinal();
+            }, 10*1000);
+        };
+        reader.readAsArrayBuffer(partial);
+        offset += chunkSize;
+    }
+
+}
 
 
 $("#btn-stamp").click(function(event){
@@ -87,8 +146,6 @@ $("#btn-verify").click(function(event){
 
     // Check parameters
     var hashType = $("#hashtype").val();
-    var hash = $("#hash").val();
-    const hashData = hexToBytes(hash);
     var op;
     if (hashType == "SHA1"){
         op = new OpenTimestamps.Ops.OpSHA1();
@@ -97,8 +154,9 @@ $("#btn-verify").click(function(event){
     }else if (hashType == "RIPEMD160"){
         op = new OpenTimestamps.Ops.OpRIPEMD160();
     }
-    const detached = OpenTimestamps.DetachedTimestampFile.fromHash(op, hashData);
+    const hash =  hexToBytes($("#hash").val());
     const ots = hexToBytes($("#ots").val());
+    const detached = OpenTimestamps.DetachedTimestampFile.fromHash(op, hash);
     const detachedOts = OpenTimestamps.DetachedTimestampFile.deserialize(ots);
 
     OpenTimestamps.verify(detachedOts,detached).then( (verifyResult)=>{
@@ -158,3 +216,21 @@ function hexToBytes(hex) {
     return bytes;
 };
 
+function stringToArrayBuffer(str){
+    if(/[\u0080-\uffff]/.test(str)){
+        throw new Error("this needs encoding, like UTF-8");
+    }
+    var arr = new Uint8Array(str.length);
+    for(var i=str.length; i--; )
+        arr[i] = str.charCodeAt(i);
+    return arr.buffer;
+}
+
+function arrayBufferToString(buffer){
+    var arr = new Uint8Array(buffer);
+    var str = String.fromCharCode.apply(String, arr);
+    /*if(/[\u0080-\uffff]/.test(str)){
+        throw new Error("this string seems to contain (still encoded) multibytes");
+    }*/
+    return str;
+}
