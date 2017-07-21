@@ -46,6 +46,8 @@ $("#choose-file").change(function(event) {
             var hashHex = shaObj.getHash("HEX");
             console.log(hashHex);
             $("#hash").val(hashHex);
+            var hashType = $("#hashtype_file").val();
+            $("#hashtype").val(hashType);
         });
 });
 
