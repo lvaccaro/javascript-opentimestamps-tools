@@ -1,5 +1,6 @@
 # javascript-opentimestamp-tools
-JS Tools for [javascript-opentimestamps](https://github.com/opentimestamps/javascript-opentimestamps)
+JS Tools for [javascript-opentimestamps](https://github.com/opentimestamps/javascript-opentimestamps).
+
 Test live tools [here](https://opentimestamps.org/tools/)
 
 ## Get `opentimestamps.js`
