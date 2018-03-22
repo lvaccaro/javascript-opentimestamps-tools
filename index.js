@@ -47,10 +47,8 @@ $("#btn-stamp").click(function(event){
         op = new OpenTimestamps.Ops.OpRIPEMD160();
     }
     const detached = OpenTimestamps.DetachedTimestampFile.fromHash(op, hashData);
-    OpenTimestamps.stamp(detached).then( ()=>{
-        const ctx = new OpenTimestamps.Context.StreamSerialization();
-        detached.serialize(ctx);
-        $("#stamp-ots").val(bytesToHex(ctx.getOutput()));
+    OpenTimestamps.stamp(detached).then( () => {
+        $("#stamp-ots").val(bytesToHex(detached.serializeToBytes()));
     });
     return false;
 });
@@ -70,9 +68,7 @@ $("#btn-upgrade").click(function(event){
     const ots = hexToBytes($("#upgrade-inots").val());
     const detachedOts = OpenTimestamps.DetachedTimestampFile.deserialize(ots);
     OpenTimestamps.upgrade(detachedOts).then( (changed)=>{
-        const ctx = new OpenTimestamps.Context.StreamSerialization();
-        detachedOts.serialize(ctx);
-        $("#upgrade-outots").val(bytesToHex(ctx.getOutput()));
+        $("#upgrade-outots").val(bytesToHex(detachedOts.serializeToBytes()));
         if(changed === true) {
             $("#upgrade-log").val("OTS upgraded");
         } else {
