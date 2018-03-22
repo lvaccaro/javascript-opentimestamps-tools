@@ -3,54 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet"></head>
+
+
 </head>
 <body>
-    <h4>1. INSERT HEX FILE TO GENERATE HASH</h4>
-    <input type="file" id="choose-file" accept='*'/><br>
-    <textarea type="text" id="file" name="file" placeholder="Insert hex. File" rows="8" cols="128"></textarea><br>
-    <select id="hashtype_file" name="hashtype_file">
-        <option value="SHA1">SHA1</option>
-        <option value="SHA256" selected>SHA256</option>
-        <option value="RIPEMD160">RIPEMD160</option>
-    </select><br>
-
-    <button id="btn-generate">GENERATE HASH</button>
-
-    <h4>2. SELECT HASH TO STAMP</h4>
-        <textarea type="text" id="hash" name="hash" placeholder="Insert hex. Hash" rows="1" cols="66"></textarea><br>
-        <select id="hashtype"  name="hashtype">
-            <option value="SHA1">SHA1</option>
-            <option value="SHA256" selected>SHA256</option>
-            <option value="RIPEMD160">RIPEMD160</option>
-        </select><br>
-    <button id="btn-stamp">STAMP</button><br>
-    <textarea type="text" id="ots" name="ots" placeholder="OTS hex. File" rows="8" cols="128"></textarea><br>
-
-    <h4>3. OTS-PROOF INFO</h4>
-    <button name="btn-info">INFO</button><br>
-    <textarea type="text" id="info" name="info" placeholder="Info Output" rows="8" cols="128"></textarea><br>
+<div class="container">
+    <div class="page-header">
+        <h1>JAVASCRIPT OPENTIMESTAMPS TOOLS</h1>
+        <p>Github project: <a href="https://github.com/lvaccaro/javascript-opentimestamps-tools">https://github.com/lvaccaro/javascript-opentimestamps-tools</a></p>
+    </div>
 
 
-    <h4>4. OTS-PROOF UPGRADE</h4>
-    <button id="btn-upgrade">UPGRADE</button><br>
-    <textarea type="text" id="upgrade" name="upgrade" placeholder="Is upgraded" rows="1" cols="66"></textarea><br>
+    <div class="card">
+        <h3 class="card-header primary-color white-text">Get hash from file</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="gethash-file">File upload</label>
+                        <input type="file" id="gethash-file" class="form-control" accept='*' placeholder="File upload"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="gethash-type">Hash function</label>
+                        <select id="gethash-type" class="form-control">
+                            <option value="SHA1">SHA1</option>
+                            <option value="SHA256" selected>SHA256</option>
+                            <option value="RIPEMD160">RIPEMD160</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="gethash-hash">Hex. Hash</label>
+                        <textarea type="text" id="gethash-hash" name="hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea><br>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-gethash">GENERATE HASH</button>
+        </div>
+    </div>
 
-    <h4>5. OTS-PROOF VERIFY</h4>
-    <button id="btn-verify">VERIFY</button><br>
-    <textarea type="text" id="attestation" name="attestation" placeholder="Attestation" rows="1" cols="66"></textarea><br>
+    <br>
 
+    <div class="card">
+        <h3 class="card-header primary-color white-text">Timestamp data</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="stamp-hash">Hex. Hash</label>
+                        <textarea type="text" id="stamp-hash" name="stamp-hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="stamp-type">Hash function used for previous hash</label>
+                        <select id="stamp-type" name="stamp-type" class="form-control">
+                            <option value="SHA1">SHA1</option>
+                            <option value="SHA256" selected>SHA256</option>
+                            <option value="RIPEMD160">RIPEMD160</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="stamp-ots">Hex. OTS</label>
+                        <textarea type="text" id="stamp-ots" name="stamp-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-stamp">STAMP DATA</button>
+        </div>
+    </div>
 
+    <br>
 
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script src="https://opentimestamps.org/tools/opentimestamps.min.js"></script>
-    <script src="https://opentimestamps.org/tools/utils.js"></script>
-    <script src="https://opentimestamps.org/tools/sha256.js"></script>
-    <script src="https://opentimestamps.org/tools/index.js"></script>
+    <div class="card">
+        <h3 class="card-header primary-color white-text">OTS info</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="info-ots">Hex. OTS</label>
+                        <textarea type="text" id="info-ots" name="info-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="info-info">Hex. OTS</label>
+                        <textarea type="text" id="info-info" name="info-info" class="form-control" placeholder="Info Output" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-info">GET INFO</button>
+        </div>
+    </div>
 
+    <br>
 
+    <div class="card">
+        <h3 class="card-header primary-color white-text">OTS upgrade</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="upgrade-inots">Hex. OTS</label>
+                        <textarea type="text" id="upgrade-inots" name="upgrade-inots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="upgrade-log">Log</label>
+                        <textarea type="text" id="upgrade-log" name="upgrade-log" class="form-control" placeholder="Logs" rows="1" cols="64"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="upgrade-outots">Hex. OTS</label>
+                        <textarea type="text" id="upgrade-outots" name="upgrade-outots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-upgrade">UPGRADE OTS</button>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+        <h3 class="card-header primary-color white-text">OTS verify</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="verify-hash">Hex. Hash</label>
+                        <textarea type="text" id="verify-hash" name="verify-hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="verify-type">Hash function used for previous hash</label>
+                        <select id="verify-type" name="verify-type" class="form-control">
+                            <option value="SHA1">SHA1</option>
+                            <option value="SHA256" selected>SHA256</option>
+                            <option value="RIPEMD160">RIPEMD160</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="verify-ots">Hex. OTS</label>
+                        <textarea type="text" id="verify-ots" name="verify-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="verify-log">Attestations</label>
+                        <textarea type="text" id="verify-log" name="verify-log" class="form-control" placeholder="Attestations output" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-verify">VERIFY OTS</button>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+        <h3 class="card-header primary-color white-text">Upload file to Hex</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="upload-file">File upload</label>
+                        <input type="file" id="upload-file" class="form-control" accept='*' placeholder="File upload"/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="upload-hex">Hex. OTS</label>
+                        <textarea type="text" id="upload-hex" name="upload-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-upload">UPLOAD</button>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+        <h3 class="card-header primary-color white-text">Download Hex</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="download-filename">Filename</label>
+                        <textarea type="text" id="download-filename" name="download-filename" class="form-control" rows="2" cols="64">download.txt</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="download-hex">Hex. OTS</label>
+                        <textarea type="text" id="download-hex" name="download-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-download">DOWNLOAD</button>
+        </div>
+    </div>
+
+    <br>
+</div>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+    <!-- OpenTimestamps JavaScript -->
+    <script src="./opentimestamps.js"></script>
+    <!-- FileSaver lib -->
+    <script src="./FileSaver.min.js"></script>
+    <!-- Crypto SHA256 lib -->
+    <script src="./sha256.js"></script>
+    <!-- Local JavaScript -->
+    <script src="./utils.js"></script>
+    <script src="./index.js"></script>
 
 </body>
 </html>
