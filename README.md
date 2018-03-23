@@ -61,8 +61,8 @@ OpenTimestamps.verify(detachedOts, detached).then( (results)=>{
     if(Object.keys(results).length === 0){
         console.log("Pending attestation");
     }else{
-        Object.keys(verifyResults).forEach(key => {
-            console.log ( key+" attests data existed as of " + (new Date(verifyResults[key] * 1000)) );
+        Object.keys(results).forEach(key => {
+            console.log ( key+" attests data existed as of " + (new Date(results[key] * 1000)) );
         });
     }
 }).catch( err => {
