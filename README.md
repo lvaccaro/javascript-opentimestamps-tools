@@ -29,9 +29,7 @@ OpenTimestamps.stamp(detached).then( ()=>{
 
 ## Info
 ```js
-const hashData = "16193782f1d839a08f9fc9a94cec1675f1729db1abc15cf9b57f31aa1724a0ae"
-const op = new OpenTimestamps.Ops.OpSHA256()
-const detached = OpenTimestamps.DetachedTimestampFile.fromHash(op, hashData)
+const detached = OpenTimestamps.DetachedTimestampFile.deserialize(ots)
 const output = OpenTimestamps.info(detached)
 console.log(output)
 ```
