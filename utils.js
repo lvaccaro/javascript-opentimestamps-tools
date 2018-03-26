@@ -66,3 +66,7 @@ function arrayBufferToString(buffer){
     }*/
     return str;
 }
+
+function upperFirstLetter(string){
+    return string[0].toUpperCase() + string.substr(1);
+}

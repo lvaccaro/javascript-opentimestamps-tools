@@ -99,7 +99,7 @@ $("#btn-verify").click(function(event){
         }else{
             var text = "";
             Object.keys(verifyResults).forEach(key => {
-                text += key+" attests data existed as of " + (new Date(verifyResults[key] * 1000))+"<br>";
+                text += upperFirstLetter(key)+" attests data existed as of " + (new Date(verifyResults[key] * 1000))+"\n";
             });
             $("#verify-log").val(text);
         }
