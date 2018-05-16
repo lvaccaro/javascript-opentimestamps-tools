@@ -98,9 +98,10 @@ $("#btn-verify").click(function(event){
             $("#verify-log").val("Pending attestation");
         }else{
             var text = "";
-            Object.keys(verifyResults).forEach(key => {
-                text += upperFirstLetter(key)+" attests data existed as of " + (new Date(verifyResults[key] * 1000))+"\n";
-            });
+            Object.keys(results).map(chain => {
+                var date = moment(results[chain].timestamp * 1000).tz(moment.tz.guess()).format('YYYY-MM-DD z')
+                text += upperFirstLetter(chain) + ' block ' + results[chain].height + ' attests existence as of ' + date + "\n"
+            })
             $("#verify-log").val(text);
         }
     }).catch( err => {

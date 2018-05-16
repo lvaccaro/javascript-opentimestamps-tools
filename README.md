@@ -59,9 +59,10 @@ OpenTimestamps.verify(detachedOts, detached).then( (results)=>{
     if(Object.keys(results).length === 0){
         console.log("Pending attestation");
     }else{
-        Object.keys(results).forEach(key => {
-            console.log ( key+" attests data existed as of " + (new Date(results[key] * 1000)) );
-        });
+        Object.keys(results).map(chain => {
+            var date = moment(results[chain].timestamp * 1000).tz(moment.tz.guess()).format('YYYY-MM-DD z');
+            console.log( upperFirstLetter(chain) + ' block ' + results[chain].height + ' attests existence as of ' + date + "\n");
+        })
     }
 }).catch( err => {
     console.log("Bad attestation" + err);
