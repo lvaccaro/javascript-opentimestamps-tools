@@ -28,7 +28,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="gethash-file">Data File</label>
-                        <input type="file" id="gethash-file" class="form-control" accept='*' placeholder="File upload"/>
+                        <input type="file" id="gethash-file" class="form-control" accept='*' placeholder="filename.ext"/>
                     </div>
                     <div class="form-group">
                         <label for="gethash-type">Hash function</label>
@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="gethash-hash">Hex. Hash</label>
-                        <textarea type="text" id="gethash-hash" name="hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea><br>
+                        <label for="gethash-hash">Hash</label>
+                        <textarea type="text" id="gethash-hash" name="hash" class="form-control" placeholder="Result will be displayed here" rows="2" cols="64"></textarea><br>
                     </div>
                 </div>
             </div>
@@ -58,8 +58,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="stamp-hash">Hex. Hash</label>
-                        <textarea type="text" id="stamp-hash" name="stamp-hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea>
+                        <label for="stamp-hash">Hash</label>
+                        <textarea type="text" id="stamp-hash" name="stamp-hash" class="form-control" placeholder="Past input here" rows="2" cols="64"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="stamp-type">Hash function used for previous hash</label>
@@ -72,8 +72,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="stamp-ots">Hex. OTS</label>
-                        <textarea type="text" id="stamp-ots" name="stamp-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="stamp-ots">Hexadecimal OTS</label>
+                        <textarea type="text" id="stamp-ots" name="stamp-ots" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
@@ -89,14 +89,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="info-ots">Hex. OTS</label>
-                        <textarea type="text" id="info-ots" name="info-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="info-ots">Hexadecimal OTS</label>
+                        <textarea type="text" id="info-ots" name="info-ots" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="info-info">OTS info</label>
-                        <textarea type="text" id="info-info" name="info-info" class="form-control" placeholder="Info Output" rows="8" cols="64"></textarea>
+                        <textarea type="text" id="info-info" name="info-info" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
@@ -112,8 +112,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="upgrade-inots">Hex. OTS</label>
-                        <textarea type="text" id="upgrade-inots" name="upgrade-inots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="upgrade-inots">Hexadecimal OTS</label>
+                        <textarea type="text" id="upgrade-inots" name="upgrade-inots" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -122,8 +122,8 @@
                         <textarea type="text" id="upgrade-log" name="upgrade-log" class="form-control" placeholder="Logs" rows="1" cols="64"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="upgrade-outots">Upgraded Hex. OTS</label>
-                        <textarea type="text" id="upgrade-outots" name="upgrade-outots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="upgrade-outots">Upgraded Hexadecimal OTS</label>
+                        <textarea type="text" id="upgrade-outots" name="upgrade-outots" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
@@ -139,8 +139,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="verify-hash">Hex. Hash</label>
-                        <textarea type="text" id="verify-hash" name="verify-hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea>
+                        <label for="verify-hash">Hash</label>
+                        <textarea type="text" id="verify-hash" name="verify-hash" class="form-control" placeholder="Paste input here" rows="2" cols="64"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="verify-type">Hash function used for previous hash</label>
@@ -151,14 +151,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="verify-ots">Hex. OTS</label>
-                        <textarea type="text" id="verify-ots" name="verify-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="verify-ots">Hexadecimal OTS</label>
+                        <textarea type="text" id="verify-ots" name="verify-ots" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="verify-log">Attestations</label>
-                        <textarea type="text" id="verify-log" name="verify-log" class="form-control" placeholder="Attestations output" rows="8" cols="64"></textarea>
+                        <textarea type="text" id="verify-log" name="verify-log" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
@@ -169,19 +169,19 @@
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">Hex. OTS from OTS file</h3>
+        <h3 class="card-header primary-color white-text">Hexadecimal OTS from OTS file</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="upload-file">OTS File</label>
-                        <input type="file" id="upload-file" class="form-control" accept='*' placeholder="File upload"/>
+                        <input type="file" id="upload-file" class="form-control" accept='*' placeholder="filename.ext.ots"/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="upload-hex">Hex. OTS</label>
-                        <textarea type="text" id="upload-hex" name="upload-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
+                        <label for="upload-hex">Hexadecimal OTS</label>
+                        <textarea type="text" id="upload-hex" name="upload-hex" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
@@ -192,19 +192,19 @@
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">OTS file from Hex. OTS</h3>
+        <h3 class="card-header primary-color white-text">OTS file from Hexadecimal OTS</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="download-hex">Hex. OTS</label>
-                        <textarea type="text" id="download-hex" name="download-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
+                        <label for="download-hex">Hexadecimal OTS</label>
+                        <textarea type="text" id="download-hex" name="download-hex" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="download-filename">Filename</label>
-                        <textarea type="text" id="download-filename" name="download-filename" class="form-control" rows="2" cols="64">download.txt</textarea>
+                        <label for="download-filename">OTS file</label>
+                        <textarea type="text" id="download-filename" name="download-filename" class="form-control" rows="2" cols="64">filename.ext.ots</textarea>
                     </div>
                 </div>
             </div>
