@@ -17,17 +17,17 @@
 <div class="container">
     <div class="page-header">
         <h1>JAVASCRIPT OPENTIMESTAMPS TOOLS</h1>
-        <p>Github project: <a href="https://github.com/lvaccaro/javascript-opentimestamps-tools">https://github.com/lvaccaro/javascript-opentimestamps-tools</a></p>
+        <p>Github project: <a href="https://github.com/fametrano/javascript-opentimestamps-tools">https://github.com/fametrano/javascript-opentimestamps-tools</a></p>
     </div>
 
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">Get hash from file</h3>
+        <h3 class="card-header primary-color white-text">Get hash from data file</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="gethash-file">File upload</label>
+                        <label for="gethash-file">Data File</label>
                         <input type="file" id="gethash-file" class="form-control" accept='*' placeholder="File upload"/>
                     </div>
                     <div class="form-group">
@@ -172,13 +172,13 @@
         <h3 class="card-header primary-color white-text">Hex. OTS from OTS file</h3>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="upload-file">OTS File</label>
                         <input type="file" id="upload-file" class="form-control" accept='*' placeholder="File upload"/>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="upload-hex">Hex. OTS</label>
                         <textarea type="text" id="upload-hex" name="upload-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
@@ -195,11 +195,13 @@
         <h3 class="card-header primary-color white-text">OTS file from Hex. OTS</h3>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="download-hex">Hex. OTS</label>
                         <textarea type="text" id="download-hex" name="download-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
                     </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="download-filename">Filename</label>
                         <textarea type="text" id="download-filename" name="download-filename" class="form-control" rows="2" cols="64">download.txt</textarea>
