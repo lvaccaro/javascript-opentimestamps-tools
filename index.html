@@ -22,13 +22,13 @@
 
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">Get hash from file</h3>
+        <h3 class="card-header primary-color white-text">HASH: get hash value from data file (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="gethash-file">File upload</label>
-                        <input type="file" id="gethash-file" class="form-control" accept='*' placeholder="File upload"/>
+                        <label for="gethash-file">Data file (locally processed)</label>
+                        <input type="file" id="gethash-file" class="form-control" accept='*' placeholder="filename.ext"/>
                     </div>
                     <div class="form-group">
                         <label for="gethash-type">Hash function</label>
@@ -41,28 +41,28 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="gethash-hash">Hex. Hash</label>
-                        <textarea type="text" id="gethash-hash" name="hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea><br>
+                        <label for="gethash-hash">Hash value</label>
+                        <textarea type="text" id="gethash-hash" name="hash" class="form-control" placeholder="Result will be displayed here" rows="2" cols="64"></textarea><br>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-gethash">GENERATE HASH</button>
+            <button class="btn btn-primary" id="btn-gethash">HASH</button>
         </div>
     </div>
 
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">Timestamp data</h3>
+        <h3 class="card-header primary-color white-text">STAMP: get hexadecimal OTS from hash (internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="stamp-hash">Hex. Hash</label>
-                        <textarea type="text" id="stamp-hash" name="stamp-hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea>
+                        <label for="stamp-hash">Hash value</label>
+                        <textarea type="text" id="stamp-hash" name="stamp-hash" class="form-control" placeholder="Paste input here" rows="2" cols="64"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="stamp-type">Hash function used for previous hash</label>
+                        <label for="stamp-type">Hash function used for the hash value above</label>
                         <select id="stamp-type" name="stamp-type" class="form-control">
                             <option value="SHA1">SHA1</option>
                             <option value="SHA256" selected>SHA256</option>
@@ -72,78 +72,78 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="stamp-ots">Hex. OTS</label>
-                        <textarea type="text" id="stamp-ots" name="stamp-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="stamp-ots">Hexadecimal OTS</label>
+                        <textarea type="text" id="stamp-ots" name="stamp-ots" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-stamp">STAMP DATA</button>
+            <button class="btn btn-primary" id="btn-stamp">STAMP</button>
         </div>
     </div>
 
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">OTS info</h3>
+        <h3 class="card-header primary-color white-text">INFO: display info from hexadecimal OTS (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="info-ots">Hex. OTS</label>
-                        <textarea type="text" id="info-ots" name="info-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="info-ots">Hexadecimal OTS</label>
+                        <textarea type="text" id="info-ots" name="info-ots" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="info-info">Hex. OTS</label>
-                        <textarea type="text" id="info-info" name="info-info" class="form-control" placeholder="Info Output" rows="8" cols="64"></textarea>
+                        <label for="info-info">Info</label>
+                        <textarea type="text" id="info-info" name="info-info" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-info">GET INFO</button>
+            <button class="btn btn-primary" id="btn-info">INFO</button>
         </div>
     </div>
 
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">OTS upgrade</h3>
+        <h3 class="card-header primary-color white-text">UPGRADE: upgrade hexadecimal OTS (internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="upgrade-inots">Hex. OTS</label>
-                        <textarea type="text" id="upgrade-inots" name="upgrade-inots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="upgrade-inots">Hexadecimal OTS</label>
+                        <textarea type="text" id="upgrade-inots" name="upgrade-inots" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="upgrade-log">Log</label>
-                        <textarea type="text" id="upgrade-log" name="upgrade-log" class="form-control" placeholder="Logs" rows="1" cols="64"></textarea>
+                        <label for="upgrade-log">Log messages</label>
+                        <textarea type="text" id="upgrade-log" name="upgrade-log" class="form-control" placeholder="Log messages will be displayed here" rows="1" cols="64"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="upgrade-outots">Hex. OTS</label>
-                        <textarea type="text" id="upgrade-outots" name="upgrade-outots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="upgrade-outots">Upgraded hexadecimal OTS</label>
+                        <textarea type="text" id="upgrade-outots" name="upgrade-outots" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-upgrade">UPGRADE OTS</button>
+            <button class="btn btn-primary" id="btn-upgrade">UPGRADE</button>
         </div>
     </div>
 
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">OTS verify</h3>
+        <h3 class="card-header primary-color white-text">VERIFY: get attestations from hexadecimal OTS (internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="verify-hash">Hex. Hash</label>
-                        <textarea type="text" id="verify-hash" name="verify-hash" class="form-control" placeholder="Hex. Hash" rows="2" cols="64"></textarea>
+                        <label for="verify-hash">Hash value</label>
+                        <textarea type="text" id="verify-hash" name="verify-hash" class="form-control" placeholder="Paste input here" rows="2" cols="64"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="verify-type">Hash function used for previous hash</label>
+                        <label for="verify-type">Hash function used for the hash value above</label>
                         <select id="verify-type" name="verify-type" class="form-control">
                             <option value="SHA1">SHA1</option>
                             <option value="SHA256" selected>SHA256</option>
@@ -151,62 +151,66 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="verify-ots">Hex. OTS</label>
-                        <textarea type="text" id="verify-ots" name="verify-ots" class="form-control" placeholder="OTS hex. File" rows="8" cols="64"></textarea>
+                        <label for="verify-ots">Hexadecimal OTS</label>
+                        <textarea type="text" id="verify-ots" name="verify-ots" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="verify-log">Attestations</label>
-                        <textarea type="text" id="verify-log" name="verify-log" class="form-control" placeholder="Attestations output" rows="8" cols="64"></textarea>
+                        <textarea type="text" id="verify-log" name="verify-log" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-verify">VERIFY OTS</button>
+            <button class="btn btn-primary" id="btn-verify">VERIFY</button>
         </div>
     </div>
 
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">Upload file to Hex</h3>
+        <h3 class="card-header primary-color white-text">LOAD: load hexadecimal OTS from OTS file (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="upload-file">File upload</label>
-                        <input type="file" id="upload-file" class="form-control" accept='*' placeholder="File upload"/>
+                        <label for="upload-file">OTS file</label>
+                        <input type="file" id="upload-file" class="form-control" accept='*.ots' placeholder="filename.ext.ots"/>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="upload-hex">Hex. OTS</label>
-                        <textarea type="text" id="upload-hex" name="upload-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
+                        <label for="upload-hex">Hexadecimal OTS</label>
+                        <textarea type="text" id="upload-hex" name="upload-hex" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-upload">UPLOAD</button>
+            <button class="btn btn-primary" id="btn-upload">LOAD FROM OTS FILE</button>
         </div>
     </div>
 
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">Download Hex</h3>
+        <h3 class="card-header primary-color white-text">SAVE: save hexadecimal OTS as OTS file (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="download-filename">Filename</label>
-                        <textarea type="text" id="download-filename" name="download-filename" class="form-control" rows="2" cols="64">download.txt</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="download-hex">Hex. OTS</label>
-                        <textarea type="text" id="download-hex" name="download-hex" class="form-control" placeholder="Hex. File" rows="8" cols="64"></textarea>
+                        <label for="download-hex">Hexadecimal OTS</label>
+                        <textarea type="text" id="download-hex" name="download-hex" class="form-control" placeholder="Paste input here" rows="8" cols="64"></textarea>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-download">DOWNLOAD</button>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="download-filename">OTS file name</label>
+                        <textarea type="text" id="download-filename" name="download-filename" class="form-control" rows="2" cols="64">filename.ext.ots</textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-download">SAVE AS OTS FILE</button>
         </div>
     </div>
 
