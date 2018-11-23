@@ -22,7 +22,7 @@
 
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">HASH: get hash from data file (no connectivity required)</h3>
+        <h3 class="card-header primary-color white-text">HASH: get hash value from data file (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="gethash-hash">Hash</label>
+                        <label for="gethash-hash">Hash value</label>
                         <textarea type="text" id="gethash-hash" name="hash" class="form-control" placeholder="Result will be displayed here" rows="2" cols="64"></textarea><br>
                     </div>
                 </div>
@@ -53,16 +53,16 @@
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">STAMP: get hexadecimal OTS from hash (connectivity required)</h3>
+        <h3 class="card-header primary-color white-text">STAMP: get hexadecimal OTS from hash (internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="stamp-hash">Hash</label>
+                        <label for="stamp-hash">Hash value</label>
                         <textarea type="text" id="stamp-hash" name="stamp-hash" class="form-control" placeholder="Paste input here" rows="2" cols="64"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="stamp-type">Hash function used for previous hash</label>
+                        <label for="stamp-type">Hash function used for the hash value above</label>
                         <select id="stamp-type" name="stamp-type" class="form-control">
                             <option value="SHA1">SHA1</option>
                             <option value="SHA256" selected>SHA256</option>
@@ -84,7 +84,7 @@
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">INFO: display info from hexadecimal OTS (no connectivity required)</h3>
+        <h3 class="card-header primary-color white-text">INFO: display info from hexadecimal OTS (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -107,7 +107,7 @@
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">UPGRADE: upgrade hexadecimal OTS (connectivity required)</h3>
+        <h3 class="card-header primary-color white-text">UPGRADE: upgrade hexadecimal OTS (internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -134,16 +134,16 @@
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">VERIFY: get attestations from hexadecimal OTS (connectivity required)</h3>
+        <h3 class="card-header primary-color white-text">VERIFY: get attestations from hexadecimal OTS (internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="verify-hash">Hash</label>
+                        <label for="verify-hash">Hash value</label>
                         <textarea type="text" id="verify-hash" name="verify-hash" class="form-control" placeholder="Paste input here" rows="2" cols="64"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="verify-type">Hash function used for previous hash</label>
+                        <label for="verify-type">Hash function used for the hash value above</label>
                         <select id="verify-type" name="verify-type" class="form-control">
                             <option value="SHA1">SHA1</option>
                             <option value="SHA256" selected>SHA256</option>
@@ -169,7 +169,7 @@
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">DESERIALIZE: get hexadecimal OTS from OTS file (no connectivity required)</h3>
+        <h3 class="card-header primary-color white-text">LOAD: load hexadecimal OTS from OTS file (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -185,14 +185,14 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-upload">DESERIALIZE FROM FILE</button>
+            <button class="btn btn-primary" id="btn-upload">LOAD FROM OTS FILE</button>
         </div>
     </div>
 
     <br>
 
     <div class="card">
-        <h3 class="card-header primary-color white-text">SERIALIZE: get OTS file from hexadecimal OTS (no connectivity required)</h3>
+        <h3 class="card-header primary-color white-text">SAVE: save hexadecimal OTS as OTS file (no internet connectivity required)</h3>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -210,7 +210,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="btn-download">SERIALIZE TO FILE</button>
+            <button class="btn btn-primary" id="btn-download">SAVE AS OTS FILE</button>
         </div>
     </div>
 
