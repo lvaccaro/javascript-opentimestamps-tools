@@ -69,9 +69,7 @@ $("#btn-stamp").click(function(event) {
         hexots = bytesToHex(detachedOriginal.serializeToBytes());
         $("#stamp-output").val(hexots);
 
-        const ctx = new OpenTimestamps.Context.StreamSerialization();
-		detachedOriginal.serialize(ctx);
-        const timestampBytes = ctx.getOutput();
+        const timestampBytes = detachedOriginal.serializeToBytes();
         var blob = new Blob([timestampBytes], {type: "octet/stream"});
         saveAs(blob, filename);
 
@@ -144,15 +142,13 @@ $("#btn-upgrade").click(function(event) {
     var filename = $("#upgrade-filename").val();
 
     OpenTimestamps.upgrade(detachedStamped).then( (changed)=>{
-        var hexots = bytesToHex(detachedStamped.serializeToBytes());        
+        var hexots = bytesToHex(detachedStamped.serializeToBytes());
         if (changed === true) {
             $("#upgrade-output").val(hexots);
             $("#verify-ots").val(hexots);
             $("#verify-output").val("Result will be displayed here")
 
-            const ctx = new OpenTimestamps.Context.StreamSerialization();
-            detachedStamped.serialize(ctx);
-            const timestampBytes = ctx.getOutput();
+            const timestampBytes = detachedStamped.serializeToBytes();
             var blob = new Blob([timestampBytes], {type: "octet/stream"});
             saveAs(blob, filename);
         } else {
@@ -172,11 +168,14 @@ $("#btn-verify").click(function(event) {
     const detachedStamped = OpenTimestamps.DetachedTimestampFile.deserialize(ots);
     var hashValue = bytesToHex(detachedStamped.fileDigest());
     $("#verify-hashValue").val(hashValue);
-    
+
     const timestamp = detachedStamped.timestamp
-    OpenTimestamps.verifyTimestamp(timestamp).then( (verifyResults)=>{
-        if (Object.keys(verifyResults).length === 0) {
-            $("#verify-output").val("Pending attestation");
+    OpenTimestamps.verifyTimestamp(timestamp).then( (results)=>{
+        if (Object.keys(results).length === 0) {
+            if (!timestamp.isTimestampComplete())
+                $("#verify-output").val("Pending attestation");
+            else
+                $("#verify-output").val("Invalid attestation");
         } else {
             var text = "";
             Object.keys(results).map(chain => {
