@@ -104,10 +104,13 @@ $("#btn-load").click(function(event) {
             $("#info-ots").val(hexots);
             $("#info-output").val("Result will be displayed here")
             $("#upgrade-ots").val(hexots);
-            $("#upgrade-filename").val(filename);
             $("#upgrade-output").val("Result will be displayed here")
             $("#verify-ots").val(hexots);
             $("#verify-output").val("Result will be displayed here")
+
+            var upgradedOTSfilename = filename.replace('.ots', '.upgraded.ots')
+            $("#upgrade-filename").val(upgradedOTSfilename);
+            $("#verify-filename").val(upgradedOTSfilename);
         };
     })(otsfile);
     reader.readAsArrayBuffer(otsfile);
@@ -140,15 +143,19 @@ $("#btn-upgrade").click(function(event) {
     const detachedStamped = OpenTimestamps.DetachedTimestampFile.deserialize(ots);
 
     var filename = $("#upgrade-filename").val();
+    $("#verify-filename").val(filename);
 
     OpenTimestamps.upgrade(detachedStamped).then( (changed)=>{
-        var hexots = bytesToHex(detachedStamped.serializeToBytes());
+        const timestampBytes = detachedStamped.serializeToBytes();
+        var hexots = bytesToHex(timestampBytes);
         if (changed === true) {
             $("#upgrade-output").val(hexots);
+
+            $("#info-ots").val(hexots);
+            $("#info-output").val("Result will be displayed here")
             $("#verify-ots").val(hexots);
             $("#verify-output").val("Result will be displayed here")
 
-            const timestampBytes = detachedStamped.serializeToBytes();
             var blob = new Blob([timestampBytes], {type: "octet/stream"});
             saveAs(blob, filename);
         } else {
@@ -162,27 +169,49 @@ $("#btn-upgrade").click(function(event) {
 
 $("#btn-verify").click(function(event) {
     event.preventDefault();
-    $("#verify-output").val("...\n" + "Waiting for result...");
+    $("#verify-output").val("Waiting for result...");
 
     const ots = hexToBytes($("#verify-ots").val());
     const detachedStamped = OpenTimestamps.DetachedTimestampFile.deserialize(ots);
     var hashValue = bytesToHex(detachedStamped.fileDigest());
     $("#verify-hashValue").val(hashValue);
 
-    const timestamp = detachedStamped.timestamp
-    OpenTimestamps.verifyTimestamp(timestamp).then( (results)=>{
+    var filename = $("#verify-filename").val();
+    var outputText = "";
+
+    OpenTimestamps.upgrade(detachedStamped).then( (changed)=>{
+        const timestampBytes = detachedStamped.serializeToBytes();
+        var hexots = bytesToHex(timestampBytes);
+        if (changed === true) {
+            outputText += "Upgraded proof"
+            $("#verify-output").val(outputText + "\nWaiting for verification results...");
+
+            // update info card
+            $("#info-ots").val(hexots);
+            $("#info-output").val("Result will be displayed here")
+            // update upgrade card
+            $("#upgrade-ots").val(hexots);
+            $("#upgrade-output").val("Result will be displayed here")
+            $("#upgrade-filename").val(filename)
+            // update proof file
+            var blob = new Blob([timestampBytes], {type: "octet/stream"});
+            saveAs(blob, filename);
+        } else {
+            // unchanged proof
+        }
+        return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp)
+    }).then( (results)=>{
         if (Object.keys(results).length === 0) {
             if (!timestamp.isTimestampComplete())
-                $("#verify-output").val("Pending attestation");
+                outputText += "\nPending attestation"
             else
-                $("#verify-output").val("Invalid attestation");
+                outputText += "\nInvalid attestation"
         } else {
-            var text = "";
             Object.keys(results).map(chain => {
                 var date = moment(results[chain].timestamp * 1000).tz(moment.tz.guess()).format('YYYY-MM-DD z')
-                text += "\n" + upperFirstLetter(chain) + ' block ' + results[chain].height + ' attests existence as of ' + date
+                outputText += "\n" + upperFirstLetter(chain) + ' block ' + results[chain].height + ' attests existence as of ' + date
             })
-            $("#verify-output").val(text);
+            $("#verify-output").val(outputText);
         }
     }).catch( err => {
         $("#verify-output").val("Error: " + err);
