@@ -46,6 +46,7 @@ $("#btn-hash").click(function(event) {
 });
 
 $("#btn-stamp").click(function(event) {
+    // list calendars the hash as been submitted to
     event.preventDefault();
     $("#stamp-output").val("Waiting for result...");
 
@@ -168,6 +169,8 @@ $("#btn-upgrade").click(function(event) {
 });
 
 $("#btn-verify").click(function(event) {
+    // optional upgrade
+    // multiple attestations?
     event.preventDefault();
     $("#verify-output").val("Waiting for result...");
 
