@@ -200,8 +200,9 @@ $("#btn-verify").click(function(event) {
             var blob = new Blob([timestampBytes], {type: "octet/stream"});
             saveAs(blob, filename);
         } else {
-            // unchanged proof
+            outputText += "No proof upgraded available"
         }
+        $("#verify-output").val(outputText + "\nVerifing attestations...");
         return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp)
     }).then( (results)=>{
         if (Object.keys(results).length === 0) {
