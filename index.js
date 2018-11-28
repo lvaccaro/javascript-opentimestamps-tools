@@ -202,7 +202,7 @@ $("#btn-verify").click(function(event) {
         return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp)
     }).then( (results)=>{
         if (Object.keys(results).length === 0) {
-            if (!timestamp.isTimestampComplete())
+            if (!detachedStamped.timestamp.isTimestampComplete())
                 outputText += "\nPending attestation"
             else
                 outputText += "\nInvalid attestation"
