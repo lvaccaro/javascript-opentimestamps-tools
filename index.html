@@ -29,6 +29,16 @@
            is an interface to create timestamp proofs using the facilities provided
            by the public free OpenTimestamps <em>calendar</em> servers.
         </p>
+        <p>Anyone could realize a timestamp with the permissionless blockchain(s)
+           by paying the transaction fees; conveniently,
+           OpenTimestamps performs
+           this operation for free without any registration or API key.
+           A calendar server provides aggregation of multiple documents and
+           Bitcoin timestamping using a single transaction for the aggregated documents.
+           Moreover, a calendar provides remote calendar services for OpenTimestamps clients, 
+           so that to use the OpenTimestamps protocol a server is not needed:
+           public servers exist that are free to use.
+        </p>
         <p>Timestamps can be verified independently using a local Bitcoin Core node;
            anyway, since a web-page cannot access the local filesystem,
            it relies on public blockexplorers.
@@ -80,10 +90,6 @@
             <a href="www.opentimestamps.org">OpenTimestamps</a> calendar servers
             for attestation of its existence (timestamp) and save the OTS proof
             as local file; internet connectivity is required.<br>
-            Anyone could realize a timestamp with the permissionless blockchain(s)
-            by paying the transaction fees; conveniently,
-            OpenTimestamps performs
-            this operation for free without any registration or API key.
             However, the proof cannot be verified immediately:
             it is incomplete as it takes a few hours
             for the timestamp to get confirmed by the Bitcoin blockchain;

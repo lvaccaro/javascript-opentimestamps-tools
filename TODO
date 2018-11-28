@@ -1,0 +1,17 @@
+aggregation singola per multiple attestazioni?
+perché blockexplorer e non calendar validation?
+differenza tra client server e library
+js è client + library, ma ha anche un server?
+se non ha un server, non ha senso separate la libreria lite-verification
+cosa vuol dire detached?
+passiamo a blockstream.info
+
+verify in js ha una signature sbagliata, meglio verifyTimestanp
+stamp and update chiamano il calendar
+verifyTimestamp chiama solo explorer?
+
+mettiamo in piedi un testnet calendar:
+	singolo url (ogni url una blockchain)
+	
+perché non vedo multiple attestations in tools
+
