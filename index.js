@@ -1,4 +1,5 @@
 const OpenTimestamps = window.OpenTimestamps;
+const calendarURL = 'calendar.irsa.it:80';
 
 $("#btn-hash").click(function(event) {
     event.preventDefault();
@@ -51,6 +52,7 @@ $("#btn-stamp").click(function(event) {
 
     var hashValue = $("#stamp-hashValue").val();
     const hashData = hexToBytes(hashValue);
+    const options = {calendars: [calendarURL]};
 
     var hashType = $("#stamp-hashType").val();
     var op;
@@ -65,7 +67,7 @@ $("#btn-stamp").click(function(event) {
 
     var filename = $("#stamp-filename").val();
 
-    OpenTimestamps.stamp(detachedOriginal).then( () => {
+    OpenTimestamps.stamp(detachedOriginal, options).then( () => {
         hexots = bytesToHex(detachedOriginal.serializeToBytes());
         $("#stamp-output").val(hexots);
 
@@ -141,11 +143,12 @@ $("#btn-upgrade").click(function(event) {
 
     const ots = hexToBytes($("#upgrade-ots").val());
     const detachedStamped = OpenTimestamps.DetachedTimestampFile.deserialize(ots);
+    const options = {whitelist: [calendarURL]};
 
     var filename = $("#upgrade-filename").val();
     $("#verify-filename").val(filename);
 
-    OpenTimestamps.upgrade(detachedStamped).then( (changed)=>{
+    OpenTimestamps.upgrade(detachedStamped, options).then( (changed)=>{
         const timestampBytes = detachedStamped.serializeToBytes();
         var hexots = bytesToHex(timestampBytes);
         if (changed === true) {
@@ -178,8 +181,9 @@ $("#btn-verify").click(function(event) {
 
     var filename = $("#verify-filename").val();
     var outputText = "";
+    var options = {whitelist: [calendarURL]};
 
-    OpenTimestamps.upgrade(detachedStamped).then( (changed)=>{
+    OpenTimestamps.upgrade(detachedStamped, options).then( (changed)=>{
         const timestampBytes = detachedStamped.serializeToBytes();
         var hexots = bytesToHex(timestampBytes);
         if (changed === true) {
@@ -199,7 +203,11 @@ $("#btn-verify").click(function(event) {
         } else {
             // unchanged proof
         }
-        return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp)
+        options = {insight: {urls: ['https://testnet.blockexplorer.com/api',
+					                'https://test-insight.bitpay.com/api']
+                            }
+                  };
+        return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp, options)
     }).then( (results)=>{
         if (Object.keys(results).length === 0) {
             if (!detachedStamped.timestamp.isTimestampComplete())
