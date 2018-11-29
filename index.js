@@ -1,5 +1,5 @@
 const OpenTimestamps = window.OpenTimestamps;
-const calendarURL = 'calendar.irsa.it:80';
+const calendarURL = 'http://calendar.irsa.it:80';
 
 $("#btn-hash").click(function(event) {
     event.preventDefault();
