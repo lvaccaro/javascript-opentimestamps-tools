@@ -143,7 +143,9 @@ $("#btn-upgrade").click(function(event) {
 
     const ots = hexToBytes($("#upgrade-ots").val());
     const detachedStamped = OpenTimestamps.DetachedTimestampFile.deserialize(ots);
-    const options = {whitelist: [calendarURL]};
+    var options = {whitelist: new OpenTimestamps.Calendar.UrlWhitelist([calendarURL])};
+    //var wlist = new OpenTimestamps.Calendar.UrlWhitelist([calendarURL]);
+
 
     var filename = $("#upgrade-filename").val();
     $("#verify-filename").val(filename);
@@ -181,7 +183,7 @@ $("#btn-verify").click(function(event) {
 
     var filename = $("#verify-filename").val();
     var outputText = "";
-    var options = {whitelist: [calendarURL]};
+    var options = {whitelist: new OpenTimestamps.Calendar.UrlWhitelist([calendarURL])};
 
     OpenTimestamps.upgrade(detachedStamped, options).then( (changed)=>{
         const timestampBytes = detachedStamped.serializeToBytes();
