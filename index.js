@@ -208,8 +208,7 @@ $("#btn-verify").click(function(event) {
         } else {
             outputText += "No proof upgraded available"
         }
-        options = {insight: {urls: ['https://testnet.blockexplorer.com/api',
-					                'https://test-insight.bitpay.com/api']
+        options = {insight: {urls: ['https://blockstream.info/testnet/api','https://testnet.blockexplorer.com/api']
                             }
                   };
         return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp, options)
