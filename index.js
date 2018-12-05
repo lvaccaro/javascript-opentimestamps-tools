@@ -1,5 +1,12 @@
 const OpenTimestamps = window.OpenTimestamps
-const calendarURL = 'http://calendar.irsa.it:80'
+const calendarsList = ['http://calendar.irsa.it:80']
+const whitelistedCalendars = new OpenTimestamps.Calendar.UrlWhitelist(calendarsList)
+const blockexplorers = {
+    urls: [
+        'https://blockstream.info/testnet/api',
+        'https://testnet.blockexplorer.com/api'
+    ]
+}
 
 $("#btn-hash").click(function(event) {
     event.preventDefault()
@@ -66,7 +73,7 @@ $("#btn-stamp").click(function(event) {
 
     const filename = $("#stamp-filename").val()
 
-    const options = {calendars: [calendarURL]}
+    const options = { calendars: calendarsList }
     OpenTimestamps.stamp(detachedOriginal, options).then( () => {
         const byteots = detachedOriginal.serializeToBytes()
         const hexots = bytesToHex(byteots)
@@ -159,11 +166,10 @@ $("#btn-upgrade").click(function(event) {
     const hashValue = bytesToHex(digest)
     $("#upgrade-hashValue").val(hashValue)
 
-    const options = {whitelist: new OpenTimestamps.Calendar.UrlWhitelist([calendarURL])}
-
     const filename = $("#upgrade-filename").val()
     $("#verify-filename").val(filename)
 
+    const options = { whitelist: whitelistedCalendars }
     OpenTimestamps.upgrade(detachedStamped, options).then( (changed)=>{
         const timestampBytes = detachedStamped.serializeToBytes()
         const hexots = bytesToHex(timestampBytes)
@@ -202,9 +208,9 @@ $("#btn-verify").click(function(event) {
 
     const filename = $("#verify-filename").val()
     var outputText = ""
-    var options = {whitelist: new OpenTimestamps.Calendar.UrlWhitelist([calendarURL])}
 
-    OpenTimestamps.upgrade(detachedStamped, options).then( (changed)=>{
+    const upgradeOptions = { whitelist: whitelistedCalendars }
+    OpenTimestamps.upgrade(detachedStamped, upgradeOptions).then( (changed)=>{
         const timestampBytes = detachedStamped.serializeToBytes()
         hexots = bytesToHex(timestampBytes)
         if (changed === true) {
@@ -224,13 +230,7 @@ $("#btn-verify").click(function(event) {
             outputText += "No proof upgrade available"
         }
         $("#verify-output").val(outputText + "\nWaiting for verification results...")
-        options = { insight:
-                    { urls: [
-                        'https://blockstream.info/testnet/api',
-                        'https://testnet.blockexplorer.com/api'
-                        ]
-                    }
-                  }
+        const options = { insight: blockexplorers }
         return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp, options)
     }).then( (results)=>{
         if (Object.keys(results).length === 0) {
