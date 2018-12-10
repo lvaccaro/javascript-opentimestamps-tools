@@ -2,6 +2,7 @@ const OpenTimestamps = window.OpenTimestamps
 
 $("#btn-hash").click(function(event) {
     event.preventDefault()
+    // begin processing...
     $("#hash-output").val("Waiting for result...")
 
     const filename = $("#hash-filename").val().replace(/^.*[\\\/]/, '')
@@ -44,9 +45,10 @@ $("#btn-hash").click(function(event) {
     return false
 })
 
+// TODO: list calendars the hash as been submitted to
 $("#btn-stamp").click(function(event) {
-    // list calendars the hash as been submitted to
     event.preventDefault()
+    // begin processing...
     $("#stamp-output").val("Waiting for result...")
 
     const hashType = $("#stamp-hashType").val()
@@ -90,6 +92,7 @@ $("#btn-stamp").click(function(event) {
 
 $("#btn-load").click(function(event) {
     event.preventDefault()
+    // begin processing...
     $("#load-output").val("Waiting for result...")
 
     const filename = $("#load-filename").val().replace(/^.*[\\\/]/, '')
@@ -127,6 +130,7 @@ $("#btn-load").click(function(event) {
 })
 
 $("#btn-info").click(function(event) {
+    // begin processing...
     event.preventDefault()
     $("#info-output").val("Waiting for result...")
 
@@ -148,6 +152,7 @@ $("#btn-info").click(function(event) {
 
 $("#btn-upgrade").click(function(event) {
     event.preventDefault()
+    // begin processing...
     $("#upgrade-output").val("Waiting for result...")
 
     const hexots = $("#upgrade-ots").val()
@@ -183,10 +188,11 @@ $("#btn-upgrade").click(function(event) {
     return false
 })
 
+// TODO: make upgrade optional
+// multiple attestations?
 $("#btn-verify").click(function(event) {
-    // optional upgrade
-    // multiple attestations?
     event.preventDefault()
+    // begin processing...
     $("#verify-output").val("Waiting for result...")
 
     var hexots = $("#verify-ots").val()
