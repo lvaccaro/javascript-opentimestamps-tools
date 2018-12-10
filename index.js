@@ -1,10 +1,23 @@
 const OpenTimestamps = window.OpenTimestamps
-const calendarsList = ['http://calendar.irsa.it:80']
-const whitelistedCalendars = new OpenTimestamps.Calendar.UrlWhitelist(calendarsList)
+const calendarsList = [
+    //'http://calendar.irsa.it:80',
+    'https://alice.btc.calendar.opentimestamps.org', 
+    'https://bob.btc.calendar.opentimestamps.org',
+    'https://finney.calendar.eternitywall.com'
+    ]
+const wcalendars = [
+     //'http://calendar.irsa.it:80',
+    'https://alice.btc.calendar.opentimestamps.org', 
+    'https://bob.btc.calendar.opentimestamps.org',
+    'https://finney.calendar.eternitywall.com'
+]
+const whitelistedCalendars = new OpenTimestamps.Calendar.UrlWhitelist(wcalendars)
 const blockexplorers = {
     urls: [
-        'https://blockstream.info/testnet/api',
-        'https://testnet.blockexplorer.com/api'
+        //'https://blockstream.info/testnet/api',
+        //'https://testnet.blockexplorer.com/api'
+        'https://blockstream.info/api',
+        'https://blockexplorer.com/api'
     ]
 }
 
@@ -169,8 +182,8 @@ $("#btn-upgrade").click(function(event) {
     const filename = $("#upgrade-filename").val()
     $("#verify-filename").val(filename)
 
-    const options = { whitelist: whitelistedCalendars }
-    OpenTimestamps.upgrade(detachedStamped, options).then( (changed)=>{
+    const upgradeOptions = { whitelist: whitelistedCalendars }
+    OpenTimestamps.upgrade(detachedStamped, upgradeOptions).then( (changed)=>{
         const timestampBytes = detachedStamped.serializeToBytes()
         const hexots = bytesToHex(timestampBytes)
         if (changed === true) {
@@ -230,8 +243,8 @@ $("#btn-verify").click(function(event) {
             outputText += "No proof upgrade available"
         }
         $("#verify-output").val(outputText + "\nWaiting for verification results...")
-        const options = { insight: blockexplorers }
-        return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp, options)
+        const verifyOptions = { insight: blockexplorers }
+        return OpenTimestamps.verifyTimestamp(detachedStamped.timestamp, verifyOptions)
     }).then( (results)=>{
         if (Object.keys(results).length === 0) {
             if (!detachedStamped.timestamp.isTimestampComplete())
