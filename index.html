@@ -18,22 +18,43 @@
     <div class="page-header">
         <h1>OPENTIMESTAMPS</h1>
         <h2>A STEP BY STEP TUTORIAL</h2>
-        <p>
-            A timestamp proves that some data existed prior to some point in time.
-            <a href="www.opentimestamps.org">OpenTimestamps</a> (OTS) defines
-            a standard set of operations for
-            creating provable timestamps and later independently verifying them.
+        <p>A timestamp proves that some data existed prior to some point in time.
+           <a href="www.opentimestamps.org">OpenTimestamps</a> (OTS) defines
+           a standard set of operations for
+           creating provable timestamps and later independently verifying them.
         </p>
-        <p>Github project: <a href="https://github.com/lvaccaro/javascript-opentimestamps-tools">https://github.com/lvaccaro/javascript-opentimestamps-tools</a></p>
+        <p>Here the Bitcoin blockchain is used as a timestamp notary:
+           the proof is attested in a Bitcoin block header;
+           this webpage
+           is an interface to create timestamp proofs using the facilities provided
+           by the public free OpenTimestamps <em>calendar</em> servers.
+        </p>
+        <p>Anyone could realize a timestamp with the permissionless blockchain(s)
+           by paying the transaction fees; conveniently,
+           OpenTimestamps performs
+           this operation for free without any registration or API key.
+           A calendar server provides aggregation of multiple documents and
+           Bitcoin timestamping using a single transaction for the aggregated documents.
+           Moreover, a calendar provides remote calendar services for OpenTimestamps clients, 
+           so that to use the OpenTimestamps protocol a server is not needed:
+           public servers exist that are free to use.
+        </p>
+        <p>Timestamps can be verified independently using a local Bitcoin Core node;
+           anyway, since a web-page cannot access the local filesystem,
+           it relies on public blockexplorers.
+        </p>
+      
+        </p>
+        <p>GitHub project: <a href="https://github.com/lvaccaro/javascript-opentimestamps-tools">https://github.com/lvaccaro/javascript-opentimestamps-tools</a></p>
     </div>
 
     <div class="card">
         <h3 class="card-header primary-color white-text">HASH DATA FILE</h3>
         <p style="margin-left: 20px; margin-right: 20px">
             <br>
-            Get the <em>hash value</em> associated to the data file to be stamped.<br>
+            Get the <em>hash value</em> associated to the data file to be timestamped.<br>
             No internet connectivity is required: the hash is calculated inside your browser
-            preserving your privacy.
+            without disclosing your document to third parties, preserving your privacy.
         </p>
         <div class="card-body">
             <div class="row">
@@ -65,14 +86,16 @@
         <h3 class="card-header primary-color white-text">TIMESTAMP HASH VALUE</h3>
         <p style="margin-left: 20px; margin-right: 20px">
             <br>
-            Submit the hash value to the
+            Submit the hash value to multiple
             <a href="www.opentimestamps.org">OpenTimestamps</a> calendar servers
-            for attestation of its existance (timestamp) and save the OTS proof
+            for attestation of its existence (timestamp) and save the OTS proof
             as local file; internet connectivity is required.<br>
-            Anyone could realize a timestamp with the permissionless blockchain(s)
-            by paying the transaction fees; conveniently,
-            <a href="www.opentimestamps.org">OpenTimestamps</a> performs
-            this operation for free without any registration or api key.
+            However, the proof cannot be verified immediately:
+            it is incomplete as it takes a few hours
+            for the timestamp to get confirmed by the Bitcoin blockchain;
+            OpenTimestamps is not doing one transaction per timestamp:
+            calendars do aggregate multiple documents that are later attested
+            with a single blockchain transaction.
         </p>
         <div class="card-body">
             <div class="row">
@@ -108,7 +131,7 @@
         <h3 class="card-header primary-color white-text">LOAD OTS PROOF FROM FILE</h3>
         <p style="margin-left: 20px; margin-right: 20px">
             <br>
-            Load the OTS proof from a local file (no internet connectivity required).
+            Load an existing OTS proof from a local file (no internet connectivity required).
         </p>
         <div class="card-body">
             <div class="row">
@@ -119,6 +142,10 @@
                     </div>
                     <button class="btn btn-primary" id="btn-load">LOAD OTS PROOF FROM FILE</button>
                     <div class="form-group">
+                        <label for="load-hashValue">OTS proof is for the hash value</label>
+                        <textarea type="text" id="load-hashValue" name="load-hashValue" class="form-control" placeholder="Result will be displayed here" rows="1" cols="64"></textarea>
+                    </div>
+                <div class="form-group">
                         <label for="load-output">OTS proof</label>
                         <textarea type="text" id="load-output" name="load-output" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
@@ -132,7 +159,9 @@
         <h3 class="card-header primary-color white-text">DISPLAY OTS PROOF INFO</h3>
         <p style="margin-left: 20px; margin-right: 20px">
             <br>
-            Display the informations included in the OTS proof (no internet connectivity required).
+            Display the info included in the OTS proof,
+            including the actual commitment operations and attestations
+            (no internet connectivity required).
         </p>
         <div class="card-body">
             <div class="row">
@@ -156,9 +185,15 @@
         <h3 class="card-header primary-color white-text">UPGRADE OTS PROOF</h3>
         <p style="margin-left: 20px; margin-right: 20px">
             <br>
-            Upgrade the OTS proof with the attestations obtained by the
+            Attempt the upgrade of the OTS proof with attestations
+            that might be available from the
             <a href="www.opentimestamps.org">OpenTimestamps</a> calendars
-            (internet connectivity is required).
+            (internet connectivity is required).</b>
+            Incomplete proofs require the assistance of the remote calendars used
+            for timestamping to be verified:
+            calendars provide the path to the Bitcoin block header.
+            Upgrading an incomplete timestamp adds the path to the Bitcoin block header
+            to the proof itself, making it self-contained and calendar-indipendent.
         </p>
         <div class="card-body">
             <div class="row">
@@ -173,6 +208,10 @@
                     </div>
                     <button class="btn btn-primary" id="btn-upgrade">UPGRADE OTS PROOF</button>
                     <div class="form-group">
+                        <label for="upgrade-hashValue">OTS proof is for the hash value</label>
+                        <textarea type="text" id="upgrade-hashValue" name="uograde-hashValue" class="form-control" placeholder="Result will be displayed here" rows="1" cols="64"></textarea>
+                    </div>
+                <div class="form-group">
                         <label for="upgrade-output">Upgraded OTS proof</label>
                         <textarea type="text" id="upgrade-output" name="upgrade-output" class="form-control" placeholder="Result will be displayed here" rows="8" cols="64"></textarea>
                     </div>
@@ -187,8 +226,10 @@
         <p style="margin-left: 20px; margin-right: 20px">
             <br>
             Verify the attestations included in the OTS proof (internet connectivity is required).<br>
-            Proof upgrading is attempted contacting the
-            <a href="www.opentimestamps.org">OpenTimestamps</a> calendars before verification:
+            Timestamps can be verified independently using a local Bitcoin Core node;
+            anyway, since a web-page cannot access the local filesystem,
+            it relies on public blockexplorers.<br>
+            Proof upgrading is attempted contacting the OpenTimestamps calendars before verification:
             if an upgrade is available, then it is downloaded and used for verification.
         </p>
         <div class="card-body">
