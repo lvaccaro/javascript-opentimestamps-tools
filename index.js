@@ -140,6 +140,7 @@ $("#btn-info").click(function(event) {
 
     const info = OpenTimestamps.info(detachedStamped)
     $("#info-output").val(info)
+	$("#info-otsweb").attr('href', 'https://opentimestamps.org/info/?' + hexots)
 
     // autofill
     $("#upgrade-ots").val(hexots)
